@@ -1,0 +1,49 @@
+div{
+    border: 1px solid red;
+    margin: 5px;
+    padding: 2px;
+}
+
+.container {
+    border: 1px solid black;
+}
+
+.col {
+    float: left;
+}
+
+.cell {
+    float:left;
+    width:80px;
+    height:80px;
+    border:1px solid blue;
+    margin: 5px;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/*#first_cell{
+    width: 200px;
+}*/
+/*.container {
+    width:auto;
+    border:1px solid red;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}*/

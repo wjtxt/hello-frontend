@@ -1,0 +1,102 @@
+    /* div添加边框线 */
+    div {
+        /*border: 1px solid green;*/
+        margin: 5px;
+        padding: 2px;
+        text-align: center;
+        width: auto;    /*默认为父元素width*/
+    }
+
+    /* 自定义class，避免样式冲突 */
+    .div2 {
+        border: 1px solid green;
+    }
+
+    /*清除浮动，保证父div能被子元素撑开*/
+    .clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+
+    /* 通过div标签，实现表格*/
+    .div_table {
+        display: table;
+        border: none;
+    }
+
+    .div_table_row{
+        display: table-row;
+        border: none;
+    }
+
+    .div_table_cell{
+        display: table-cell;
+        border: none;
+    }
+
+    .bar {
+        /*不包括border、margin的高度*/
+        /*padding: 2px;*/
+        height: 50px;
+        line-height: 50px; 
+    }
+
+    /*class名称和bootstrap冲突*/
+    /*.container {
+        width: auto;
+        border: 1px solid red;
+    }*/
+
+    .container2 {
+        width: auto;
+        border: 1px solid black;
+    }
+
+    /*class名称和bootstrap冲突*/
+    /*.col {
+        float: left;
+    }*/
+
+    .col2 {
+        float: left;
+    }
+
+    .pane_400_300 {
+        width:400px;
+        height:400px;
+    }
+
+    .pane_400_300_2 {
+        width: 400px;
+        height: 400px;
+    }
+
+    /* 合并 col和pane_400_300*/
+    .cell {
+        float:left;
+        width:400px;
+        height:400px;
+    }
+
+    .no-border {
+        border: none;
+    }
+
+    .img {
+        background: url("../img/1.jpg") no-repeat 1px 1px;
+        height: 300px;
+    }
+
+    /*.middle-box{
+        display: table; 
+        height: 300px;
+    }
+    
+    .middle-inner{
+        display: table-cell; 
+        vertical-align:middle; 
+        text-align:center;
+    }*/
