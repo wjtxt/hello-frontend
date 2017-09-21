@@ -1,130 +1,5 @@
-// 最简单的函数
-function add() {
-    return "abc";
-}
-
-//定义一个加法，传入参数类型可以不填，传出参数可以任意（void、int、string等）
-function add(a, b) {
-    return a + b;
-}
-
-// 定义一个constructor（函数的一种，模拟class的实现）
-function UserInfo(n, a) {
-    name = n;
-    age = a;
-};
-
-UserInfo.prototype.setName = function (name) {
-    this.name = name;
-}
-UserInfo.prototype.getName = function () {
-    //return this.name;
-    return name;
-}
-UserInfo.prototype.getClassName = function () {
-    return "UserInfo";
-}
-
-// 测试函数
-function testFunc() {
-    var sum = add(1, 2);
-    console.log(sum);
-
-    // 测试“new A”和“new A()”的区别
-    var obj1 = new UserInfo;
-    UserInfo.prototype.getClassName = function () {
-        return "UserInfo_new"
-    }
-    console.log(obj1.getClassName());
-
-    var obj = new UserInfo("WJ", 10);
-    obj.sex = "male";
-    console.log(obj.name);
-    console.log(obj.sex);
-    console.log(obj.getName());
-    //console.log(UserInfo.getName()); // function object can not access method and attr of prototype object
-    console.log(UserInfo.prototype.getName());
-    console.log(obj.__proto__.getName());
-
-    // 研究原型链
-    function f() {}
-    f.prototype.foo = "abc";
-    f.__proto__.age = 18;
-    var obj = new f();
-    obj.sex = "male";
-    console.log(obj.foo); //abc
-}
-
-// 定义1个匿名方法，并将函数指针赋值给变量onClickMeVar，var代表任意类型的变量（对象、实例），可以用任意类型（基本类型、复合类型、函数等）复制
-var onClickMeVar = function () {
-    alert("hello world on test!");
-
-    return function () {
-        alert("111-222");
-    }
-};
-
-// 定义1个名为clickmeFunc的函数
-function onClickMe() {
-    alert("hello world on testFunc!");
-
-    //动态在document尾部添加一个按钮
-    var btn = document.createElement("BUTTON");
-    var text = document.createTextNode("hello world!");
-    btn.appendChild(text);
-    document.body.appendChild(btn);
-
-    return function () {
-        alert("111-222-333");
-    }
-}
-
-// bootstrap表格添加操作按钮
-function operateFormatter(value, row, index) { //赋予的参数
-
-    console.debug('on operateFormatter()');
-
-    return [
-        '<button class="btn btn-info btn-sm rightSize detailBtn" type="button"><i class="fa fa-paste"></i> 详情</button>',
-        '<button class="btn btn-danger btn-sm rightSize packageBtn" type="button"><i class="fa fa-envelope"></i> 通知</button>'
-    ].join('');
-}
-
-// bootstrap表格添加行样式
-function rowStyle(row, index) {
-
-    console.debug('on rowStyle()');
-
-    var classesArr = ['success', 'info'];
-    if (index % 2 === 0) { //偶数行
-        return {
-            classes: classesArr[0]
-        };
-    } else { //奇数行
-        return {
-            classes: classesArr[1]
-        };
-    }
-}
-
-// 初始化操作
-function init() {
-    testFunc();
-
-    document.getElementById("btn_clickme").onclick = onClickMe;
-
-    document.getElementById("btn_clickme").onmouseover = function () {
-        // alert("onmouseover!");
-        document.getElementById("btn_clickme").setAttribute("value", "ok");
-    };
-
-    document.getElementById("btn_clickme").onmouseout = function () {
-        document.getElementById("btn_clickme").setAttribute("value", "点我");
-    };
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-var treeObj = {
+define([], function () {
+    return {
         initTable: function () {
 
             var queryParams = function (params) {
@@ -141,6 +16,8 @@ var treeObj = {
             }
 
             var responseHandler = function (e) {
+
+                console.debug('on responseHandler()!');
 
                 console.log(e);
 
@@ -273,34 +150,6 @@ var treeObj = {
                         break;
                 }
 
-                var data = [{
-                        "uid": "1101",
-                        "name": "owen",
-                        "sex": "female",
-                        "age": 28,
-                        "area": "上海",
-                        "loginWay": "phone",
-                        "status": "1",
-                        "createTime": "2017-04-10 12:23:35",
-                        "orderService": "旅游",
-                        "connectorIp": "172.16.24.35",
-                        "connectorPort": "9090"
-                    },
-                    {
-                        "uid": "1102",
-                        "name": "owen",
-                        "sex": "female",
-                        "age": 28,
-                        "area": "上海",
-                        "loginWay": "phone",
-                        "status": "1",
-                        "createTime": "2017-04-10 12:23:35",
-                        "orderService": "旅游",
-                        "connectorIp": "172.16.24.35",
-                        "connectorPort": "9090"
-                    }
-                ];
-
                 $('#' + tableName).empty();
                 $('#' + tableName).bootstrapTable('destroy').bootstrapTable({
                     url: '../data/login_info.json', //url一般是请求后台的url地址,调用ajax获取数据。此处我用本地的json数据来填充表格。
@@ -334,9 +183,11 @@ var treeObj = {
                     paginationNextText: "Next",
                     paginationFirstText: "First",
                     paginationLastText: "Last",
-                    responseHandler: responseHandler,
+                   // responseHandler: responseHandler,
                     columns: columns,
                     onLoadSuccess: function (data) { //加载成功时执行
+
+                        console.debug('on onLoadSuccess()!');
                         console.log(data);
                     },
                     onLoadError: function (res) { //加载失败时执行
@@ -359,45 +210,62 @@ var treeObj = {
 
             // 执行初始化方法
             init();
+        },
+
+        initTableEx: function () {
+
+            console.debug('init start...');
+
+            $('#receiveLogs-table').bootstrapTable({
+                url: '../data/data.json', // 请求数据源的路由
+                dataType: "json",
+                pagination: true, //前端处理分页
+                singleSelect: false, //是否只能单选
+                search: true, //显示搜索框，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                toolbar: '#toolbar', //工具按钮用哪个容器
+                striped: true, //是否显示行间隔色
+                cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pageNumber: 1, //初始化加载第10页，默认第一页
+                pageSize: 10, //每页的记录行数（*）
+                pageList: [10, 20, 50, 100], //可供选择的每页的行数（*）
+                strictSearch: true, //设置为 true启用 全匹配搜索，false为模糊搜索
+                showColumns: true, //显示内容列下拉框
+                showRefresh: true, //显示刷新按钮
+                minimumCountColumns: 2, //当列数小于此值时，将隐藏内容列下拉框
+                clickToSelect: true, //设置true， 将在点击某行时，自动勾选rediobox 和 checkbox
+                // {#height: 500, //表格高度，如果没有设置height属性，表格自动根据记录条数决定表格高度#}
+                // uniqueId: "id", //每一行的唯一标识，一般为主键列
+                // showToggle: true, //是否显示详细视图和列表视图的切换按钮
+                // cardView: false, //是否显示详细视图
+                // {#        detailView: true, //是否显示父子表，设置为 true 可以显示详细页面模式,在每行最前边显示+号#}
+                sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
+                columns: [{ //定义表头,这个表头必须定义,下边field后边跟的字段名字必须与后端传递的字段名字相同.如:id、name、price跟后端的字段名id  name price是完全一样的.
+
+                    field: 'id',
+                    title: '序号',
+                    align: 'center', //对齐方式，居中
+                    // {#                width: '200px'  // 可以写各种样式#}
+
+                }, {
+                    field: 'name',
+                    title: '名称',
+                    align: 'center'
+                }, {
+                    field: 'price',
+                    title: '价格',
+                    align: 'center',
+
+                }, {
+                    title: '操作',
+                    field: 'id',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        var e = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">编辑</a> '; //row.id为每行的id
+                        var d = '<a href="#" mce_href="#" onclick="del(\'' + row.id + '\')">删除</a> ';
+                        return e + d;
+                    }
+                }],
+            })
         }
-}
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-        // 定义绑定控件事件的函数
-        function onloadFinished() {
-            console.debug("on onloadFinished()");
-
-            //init();
-
-            //window.operateFormatter = operateFormatter;
-            // window.rowStyle = rowStyle;
-            // treeObj.initTable();
-        };
-
-        // 绑定消息响应函数，右侧写函数名（代表函数指针）
-        /*document.getElementById("btn_clickme").onclick=testFunc();
-        document.getElementById("btn_clickme").onclick=testFunc;*/
-
-        //----------------------------------------
-        //  原生
-        //----------------------------------------
-        // 文档加载完成事件响应函数，必须保证这段脚本，在body元素加载完成后执行，否则body对象为空，即："Cannot set property 'onload' of null"
-        //document.body.onload = bindEvent;
-        //window.onload = onloadFinished;
-
-        //----------------------------------------
-        //  jquery
-        //----------------------------------------
-        // 方法一（jquery），文档加载完成事件响应函数
-        /*$(document).ready(function(){
-            alert("document is ready!");
-
-            // $("#btn_clickme").onclick=testFunc;
-            $("#btn_clickme").click(testFunc);
-        });*/
-
-        // 方法二（jquery），文档加载完成事件响应函数，推荐
-        $(function () {
-            //$("#btn_clickme").click(testFunc);
-            onloadFinished();
-        })
+    }
+});

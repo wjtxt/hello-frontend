@@ -22,11 +22,15 @@
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="../libs/bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+    <!--<script type="text/javascript" src="../libs/bootstrap/4.0.0-alpha.6/bootstrap.js"></script>-->
 
     <!-- bootstrap table -->
     <link rel="stylesheet" href="../libs/bootstrap-table/1.11.0/css/bootstrap-table.css">
+    <!--<script type="text/javascript" src="../libs/bootstrap-table/1.11.0/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap-table/1.11.0/bootstrap-table-zh-CN.js"></script>-->
 
     <!-- requirejs -->
+    <!--<script type="text/javascript" src="../js/div.js"></script>-->
     <script type="text/javascript" src="../libs/require.js" data-main="../js/main"></script>
 </head>
 
@@ -98,9 +102,22 @@
     </div>
 
     <!--第二行-->
-    <div class="div2 container clearfix" id="table_container">
-        <table id="receiveLogs-table" class="table table-hover" data-pagination="true" data-show-refresh="false" data-show-toggle="false"
-            data-showColumns="false" data-toggle="table" data-row-style="rowStyle">
+    <div class="div2 container2 clearfix" id="table_container">
+        <!--<div class="table-responsive">-->
+            <table class="table table-hover" id="receiveLogs-table"></table>
+        <!--</div>-->
+        
+        <!--<table id="receiveLogs-table" 
+            class="table table-hover" 
+            data-pagination="true" 
+            data-show-refresh="false" 
+            data-show-toggle="false"
+            data-showColumns="false" 
+            data-toggle="table" 
+            data-row-style="rowStyle" 
+            row-style="rowStyle"
+            data-url="../data/login_info.json"
+        >
             <thead>
                 <tr>
                     <th colspan="5" data-valign="middle" data-halign="center">用户基本信息</th>
@@ -122,17 +139,7 @@
                     <th data-field="connectorPort" data-align="center">连接器端口</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th>姓名</th>
-                    <th>年龄</th>
-                </tr>
-                <tr>
-                    <td>raul</td>
-                    <td>29</td>
-                </tr>
-            </tbody>
-        </table>
+        </table>-->
     </div>
 
     <!--页脚-->

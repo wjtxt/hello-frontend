@@ -1,0 +1,32 @@
+﻿{
+	"total":2,
+	"rows":[
+	{
+		"uid":"1101",
+		"name":"owen",
+		"sex":"female",
+		"age":28,
+		"area":"上海",
+		"loginWay":"phone",
+		"status":"1",
+		"createTime":"2017-04-10 12:23:35",
+		"orderService":"旅游",
+		"connectorIp":"172.16.24.35",
+		"connectorPort":"9090"
+	}
+	,
+	{
+		"uid":"1102",
+		"name":"owen",
+		"sex":"female",
+		"age":28,
+		"area":"上海",
+		"loginWay":"phone",
+		"status":"1",
+		"createTime":"2017-04-10 12:23:35",
+		"orderService":"旅游",
+		"connectorIp":"172.16.24.35",
+		"connectorPort":"9090"
+	}
+	]
+}

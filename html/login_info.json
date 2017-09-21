@@ -1,0 +1,19 @@
+{
+"total":100,
+"rows":
+	[
+		{
+			"uid":"1101",
+			"name":"owen",
+			"sex":"female",
+			"age":28,
+			"area":"…œ∫£",
+			"loginWay":"phone",
+			"status":"1",
+			"createTime":"2017-04-10 12:23:35",
+			"orderService":"¬√”Œ",
+			"connectorIp":"172.16.24.35",
+			"connectorPort":"9090"
+		}
+	]
+}
